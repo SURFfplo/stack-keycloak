@@ -12,7 +12,7 @@ secrets:
 
 
 services:
-  postgres:
+  keycloak-db:
     image: 192.87.106.18:56001/postgres:0.1          
     volumes:
       - /mnt/nfs/nfsdlo/$STACK_NETWORK/canvas-0.1/data:/var/lib/postgresql/data
@@ -30,7 +30,7 @@ services:
       - keycloak_password
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
+      DB_ADDR: keycloak-db
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_SCHEMA: public
