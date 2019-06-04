@@ -4,6 +4,13 @@
 mkdir -p /mnt/nfs/nfsdlo/$STACK_NETWORK/$STACK_SERVICE-$STACK_VERSION/data
 
 # remove any old secrest and configs
+if [[ $(docker secret ls -f name=keycloack -q) ]]; then
+    docker secret rm $(docker secret ls -f name=keycloack -q)
+else
+    echo "no files found"
+fi
+
+
 docker secret rm $(docker secret ls -f name=keycloack -q)
 
 
