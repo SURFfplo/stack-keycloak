@@ -7,40 +7,41 @@ networks:
 secrets:
   keycloak_db_dba_password:
     external: true
+  keycloak_password:
+    external: true
 
 
 services:
   postgres:
     image: 192.87.106.18:56001/postgres:0.1          
-      image: postgres
-      volumes:
-        - /mnt/nfs/nfsdlo/$STACK_NETWORK/canvas-0.1/data:/var/lib/postgresql/data
-      secrets:
-        - keycloak_db_dba_password
-      environment:
-        POSTGRES_DB: keycloak
-        POSTGRES_USER: keycloak
-        POSTGRES_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
-        # POSTGRES_PASSWORD: password
+    volumes:
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/canvas-0.1/data:/var/lib/postgresql/data
+    secrets:
+      - keycloak_db_dba_password
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
+      # POSTGRES_PASSWORD: password
   keycloak:
-          image: 192.87.106.18:56001/keycloak:0.1
-      secrets:
-        - keycloak_db_dba_password
-        - keycloak_password
-      environment:
-        DB_VENDOR: POSTGRES
-        DB_ADDR: postgres
-        DB_DATABASE: keycloak
-        DB_USER: keycloak
-        DB_SCHEMA: public
-        DB_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
-        #DB_PASSWORD: password
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: /run/secrets/keycloak_password
-        #KEYCLOAK_PASSWORD: Pa55w0rd
-        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
-        #JDBC_PARAMS: "ssl=true"
-      ports:
-        - 57003:8080
-      depends_on:
-        - postgres
+    image: 192.87.106.18:56001/keycloak:0.1
+    secrets:
+      - keycloak_db_dba_password
+      - keycloak_password
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
+      #DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: /run/secrets/keycloak_password
+      #KEYCLOAK_PASSWORD: Pa55w0rd
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    ports:
+      - 57003:8080
+    depends_on:
+      - postgres
