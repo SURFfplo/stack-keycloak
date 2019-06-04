@@ -15,7 +15,7 @@ services:
   keycloak-db:
     image: 192.87.106.18:56001/postgres:0.1          
     volumes:
-      - /mnt/nfs/nfsdlo/$STACK_NETWORK/canvas-0.1/data:/var/lib/postgresql/data
+      - /mnt/nfs/nfsdlo/$STACK_NETWORK/keycloak-0.1/data:/var/lib/postgresql/data
     secrets:
       - keycloak_db_dba_password
     environment:
