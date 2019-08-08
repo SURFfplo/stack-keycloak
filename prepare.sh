@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create nfs mount
-mkdir -p /mnt/nfs/nfsdlo/$STACK_NETWORK/$STACK_SERVICE-$STACK_VERSION/data
+mkdir -p /mnt/nfs/nfsdlo/$STACK_NETWORK/$STACK_SERVICE/$STACK_VERSION/data
 
 # remove any old secrest and configs
 if [[ $(docker secret ls -f name=keycloak -q) ]]; then
