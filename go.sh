@@ -1,9 +1,9 @@
 #!/bin/bash
 
 NETWORK=dev-net
-SERVICE=DEVcanvas
+SERVICE=DEVkeycloak
 VERSION=0.1
-PORT=57111
+PORT=57003
 
 # input with four arguments: go.sh SERVICE VERSION NETWORK PORT
 if [ "$1" != "" ]; then
