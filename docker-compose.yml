@@ -3,6 +3,11 @@ version: '3.7'
 networks:
   dev-net:
     external: true
+  test-net:
+    external: true
+  exp-net:
+    external: true
+    
 
 secrets:
   keycloak_db_dba_password:
@@ -41,7 +46,9 @@ services:
       #KEYCLOAK_PASSWORD: Pa55w0rd
       # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
       #JDBC_PARAMS: "ssl=true"
+    networks:
+      - $STACK_NETWORK
     ports:
-      - 57003:8080
+      - $STACK_PORT:8080
     depends_on:
       - postgres
