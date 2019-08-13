@@ -28,6 +28,9 @@ services:
       POSTGRES_USER: keycloak
       POSTGRES_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
       # POSTGRES_PASSWORD: password
+    networks:
+      - $STACK_NETWORK
+      
   keycloak:
     image: 192.87.106.18:56001/keycloak:0.1
     secrets:
