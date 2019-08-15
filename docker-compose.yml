@@ -44,7 +44,7 @@ services:
       DB_SCHEMA: public
       DB_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
       #DB_PASSWORD: password
-      KEYCLOAK_HOSTNAME: $STACK_HOSTNAME
+      KEYCLOAK_HOSTNAME: $STACK_DOMAIN
       KEYCLOAK_LOGLEVEL: ALL
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD_FILE: /run/secrets/keycloak_password
