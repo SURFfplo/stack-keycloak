@@ -33,6 +33,7 @@ services:
       
   keycloak:
     image: 192.87.106.18:56001/keycloak:0.1
+    hostname: $STACK_DOMAIN
     secrets:
       - keycloak_db_dba_password
       - keycloak_password
@@ -44,8 +45,8 @@ services:
       DB_SCHEMA: public
       DB_PASSWORD_FILE: /run/secrets/keycloak_db_dba_password
       #DB_PASSWORD: password
-      KEYCLOAK_HOSTNAME: $STACK_DOMAIN
-      KEYCLOAK_LOGLEVEL: ALL
+      #KEYCLOAK_HOSTNAME: $STACK_DOMAIN
+      KEYCLOAK_LOGLEVEL: TRACE
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD_FILE: /run/secrets/keycloak_password
       #KEYCLOAK_PASSWORD: Pa55w0rd
